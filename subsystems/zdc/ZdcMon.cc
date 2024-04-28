@@ -183,7 +183,7 @@ int ZdcMon::Init()
   se->registerHisto(this, zdc_S1);
   se->registerHisto(this, zdc_S2);
   se->registerHisto(this, zdc_S3);
-  se->registerHisto(this, h_waveform);
+  // se->registerHisto(this, h_waveform);
 
   // SMD
   // Individual smd_adc channel histos

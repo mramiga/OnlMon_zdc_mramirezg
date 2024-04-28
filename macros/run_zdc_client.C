@@ -12,12 +12,22 @@ void zdcDrawInit(const int online = 0)
 
   OnlMonClient *cl = OnlMonClient::instance();
   // register histos we want with monitor name
+  //zdc
   cl->registerHisto("zdc_adc_north","ZDCMON_0");
   cl->registerHisto("zdc_adc_south","ZDCMON_0");
   
 
   cl->registerHisto("smd_adc_n_hor_ind0", "ZDCMON_0");
-  // smd
+  cl->registerHisto("zdc_S1","ZDCMON_0");
+  cl->registerHisto("zdc_S2","ZDCMON_0");
+  cl->registerHisto("zdc_S3","ZDCMON_0");
+  cl->registerHisto("zdc_N1","ZDCMON_0");
+  cl->registerHisto("zdc_N2","ZDCMON_0");
+  cl->registerHisto("zdc_N3","ZDCMON_0");
+  // cl->registerHisto("h_waveform","ZDCMON_0");
+ 
+
+ // smd
   // Individual smd_adc channel histos
   
   for(int i=0; i<8;i++)
@@ -31,6 +41,17 @@ void zdcDrawInit(const int online = 0)
    cl->registerHisto(Form("smd_adc_n_ver_ind%d", i),"ZDCMON_0");
    cl->registerHisto(Form("smd_adc_s_ver_ind%d", i),"ZDCMON_0");
   }
+
+  // SMD hit Multiplicities
+  cl->registerHisto("smd_north_hor_hits", "ZDCMON_0");
+  cl->registerHisto("smd_north_ver_hits", "ZDCMON_0");
+  cl->registerHisto("smd_south_hor_hits", "ZDCMON_0");
+  cl->registerHisto("smd_south_ver_hits", "ZDCMON_0");
+  // // no threshold
+  // cl->registerHisto("smd_north_hor_hits_nth", "ZDCMON_0");
+  // cl->registerHisto("smd_north_ver_hits_nth", "ZDCMON_0");
+  // cl->registerHisto("smd_south_hor_hits_nth", "ZDCMON_0");
+  // cl->registerHisto("smd_south_ver_hits_nth", "ZDCMON_0");
   
 
   // north smd
@@ -84,3 +105,4 @@ void zdcHtml()
   cl->MakeHtml("ZDCMONDRAW");                       // create html output
   return;
 }
+

@@ -9,6 +9,8 @@ R__LOAD_LIBRARY(libonlzdcmon_server.so)
 
 
 void run_zdc_server(const std::string &name = "ZDCMON", unsigned int serverid = 0, const std::string &prdffile = "/sphenix/lustre01/sphnxpro/commissioning/ZDC/junk/junk_seb14-00028671-0000.prdf")
+// void run_zdc_server(const std::string &name = "ZDCMON", unsigned int serverid = 0, const std::string &prdffile = "/sphenix/lustre01/sphnxpro/commissioning/GL1/cosmics/GL1_cosmics_gl1daq-00034390-0000.prdf")
+
 {
 
   OnlMon *m = new ZdcMon(name);                     // create subsystem Monitor object
