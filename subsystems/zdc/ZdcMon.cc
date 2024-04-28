@@ -299,10 +299,10 @@ int ZdcMon::process_event(Event *e /* evt */)
       // for (int s = p->iValue(0, "SAMPLES")-3; s < p->iValue(0, "SAMPLES"); s++) {baseline_high += p->iValue(s,c);}
       // baseline_high /=3.;
 
-      for (int s = 0; s < p->iValue(0, "SAMPLES"); s++)
-      {
-        h_waveform->Fill(s, p->iValue(s, c) - baseline);
-      }
+      // for (int s = 0; s < p->iValue(0, "SAMPLES"); s++)
+      // {
+      //   h_waveform->Fill(s, p->iValue(s, c) - baseline);
+      // }
 
       int mod = c % 2;
 
@@ -578,8 +578,8 @@ int ZdcMon::process_event(Event *e /* evt */)
       {
         smd_hor_north_small->Fill(smd_pos[0]);
         smd_ver_north_small->Fill(smd_pos[1]);
-        smd_hor_north_small->Fill( smd_pos[0] );
-        smd_ver_north_small->Fill( smd_pos[1] );
+        smd_hor_north_small->Fill( smd_pos[0]);
+        smd_ver_north_small->Fill( smd_pos[1]);
       }
     }
 
