@@ -118,7 +118,7 @@ int ZdcMon::Init()
   zdc_S3 = new TH1F("zdc_S3", "ZDC3 ADC south", BIN_NUMBER, MIN_ENERGY1, MAX_ENERGY1);
 
   //waveform
-  h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
+  // h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
 
   // SMD
 
@@ -505,7 +505,7 @@ int ZdcMon::process_event(Event *e /* evt */)
       double sh = smd_s_h_counter_nth + 0.0;
       smd_south_hor_hits->Fill(sh);
       double sv = smd_s_v_counter_nth + 0.0;
-      smd_south_ver_hits->Fill();
+      smd_south_ver_hits->Fill(sv);
       // no thresholds
       // double noth_nh = smd_n_h_counter_nth + 0.0;
       // smd_north_hor_hits_nth->Fill(noth_nh);
