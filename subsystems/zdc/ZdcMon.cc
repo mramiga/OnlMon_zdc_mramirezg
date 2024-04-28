@@ -699,19 +699,10 @@ void ZdcMon::CompSumSmd()  //compute 'digital' sum
     smd_sum[0] += smd_adc[i]; // north horizontal
     smd_sum[2] += smd_adc[i + 16]; // south horizontal
   }
-  
+  for (int i = 0; i < 8; i++)
   {
     smd_sum[0] += smd_adc[i];       // north horizontal
     smd_sum[2] += smd_adc[i + 16];  // south horizontal
-  }
-  for (int i = 0; i < 7; i++)
-  {
-    smd_sum[1] += smd_adc[i + 8];   // north vertical
-    smd_sum[3] += smd_adc[i + 24];  // south vertical
-  }
-  {
-    smd_sum[1] += smd_adc[i + 8]; // north vertical
-    smd_sum[3] += smd_adc[i + 24]; // south vertical
   }
 }
 
