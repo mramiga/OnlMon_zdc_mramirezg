@@ -287,7 +287,7 @@ int ZdcMon::process_event(Event *e /* evt */)
       unsigned int towerkey = TowerInfoDefs::decode_zdc(c);
       int zdc_side = TowerInfoDefs::get_zdc_side(towerkey);
 
-      double baseline = 0.;
+      // double baseline = 0.;
 
       // Chris: this code is unused
       // double baseline_low = 0.;
@@ -571,16 +571,10 @@ int ZdcMon::process_event(Event *e /* evt */)
       }
       else
       {
-        smd_hor_north_good->Fill( smd_pos[0] );
-        smd_ver_north_good->Fill( smd_pos[1] );
+        smd_hor_north_small->Fill( smd_pos[0] );
+        smd_ver_north_small->Fill( smd_pos[1] );
       } 
-      else 
-      {
-        smd_hor_north_small->Fill(smd_pos[0]);
-        smd_ver_north_small->Fill(smd_pos[1]);
-        smd_hor_north_small->Fill( smd_pos[0]);
-        smd_ver_north_small->Fill( smd_pos[1]);
-      }
+
     }
 
     //if (fill_hor_north && fill_ver_north && totalzdcnorthsignal > 40) {
