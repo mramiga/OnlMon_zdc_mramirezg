@@ -49,7 +49,7 @@ class ZdcMon : public OnlMon
   TH1 *zdc_S3 = nullptr;
 
   // //waveform
-  // TH2 *h_waveform = nullptr;
+  TH2 *h_waveform = nullptr;
   // smd
   // Individual Channels
   TH1 *smd_adc_n_hor_ind0 = nullptr;

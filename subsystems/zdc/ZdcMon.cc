@@ -118,12 +118,9 @@ int ZdcMon::Init()
   zdc_S3 = new TH1F("zdc_S3", "ZDC3 ADC south", BIN_NUMBER, MIN_ENERGY1, MAX_ENERGY1);
 
   //waveform
-  // h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
+  h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
 
   // SMD
-
-  // smd_adc_n_hor_ind0 = new TH1F("smd_adc_n_hor_ind0", "smd_adc_n_hor_ind0", 1000, 0, 5000 );
-
   // Individual SMD_ADC Values
   // Horizontal (expert plot)
   for (int i = 0; i < 8; i++)
@@ -183,7 +180,7 @@ int ZdcMon::Init()
   se->registerHisto(this, zdc_S1);
   se->registerHisto(this, zdc_S2);
   se->registerHisto(this, zdc_S3);
-  // se->registerHisto(this, h_waveform);
+  se->registerHisto(this, h_waveform);
 
   // SMD
   // Individual smd_adc channel histos
@@ -299,10 +296,10 @@ int ZdcMon::process_event(Event *e /* evt */)
       // for (int s = p->iValue(0, "SAMPLES")-3; s < p->iValue(0, "SAMPLES"); s++) {baseline_high += p->iValue(s,c);}
       // baseline_high /=3.;
 
-      // for (int s = 0; s < p->iValue(0, "SAMPLES"); s++)
-      // {
-      //   h_waveform->Fill(s, p->iValue(s, c) - baseline);
-      // }
+      for (int s = 0; s < p->iValue(0, "SAMPLES"); s++)
+      {
+        h_waveform->Fill(s, p->iValue(s, c) - baseline);
+      }
 
       int mod = c % 2;
 
