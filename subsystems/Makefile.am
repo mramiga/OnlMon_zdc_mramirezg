@@ -7,7 +7,6 @@ include_HEADERS =
 ### is at the end of this list
 ###
 SUBDIRS = \
-  bbc \
   ll1 \
   cemc \
   daq \
