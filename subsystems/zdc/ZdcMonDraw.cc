@@ -699,6 +699,7 @@ int ZdcMonDraw::DrawSmdAdcNorthIndividual(const std::string & /* what */)
   TC[4]->SetEditable(true);
   TC[4]->Clear("D");
   Pad[21]->cd();
+  gPad->SetLogy(1); // log scale for the y-axis
 
   if (smd_adc_n_hor_ind[0])
   {
@@ -714,6 +715,7 @@ int ZdcMonDraw::DrawSmdAdcNorthIndividual(const std::string & /* what */)
   for (int i = 1; i < 8; ++i)
   {
     Pad[21 + i]->cd();
+    gPad->SetLogy(1); // log scale for the y-axis
     if (smd_adc_n_hor_ind[i])
     {
       smd_adc_n_hor_ind[i]->DrawCopy();
@@ -723,6 +725,7 @@ int ZdcMonDraw::DrawSmdAdcNorthIndividual(const std::string & /* what */)
   for (int i = 0; i < 7; ++i)
   {
     Pad[29 + i]->cd();
+    gPad->SetLogy(1); // log scale for the y-axis
     if (smd_adc_n_ver_ind[i])
     {
       smd_adc_n_ver_ind[i]->DrawCopy();
@@ -775,6 +778,7 @@ int ZdcMonDraw::DrawSmdAdcSouthIndividual(const std::string & /* what */)
   TC[5]->SetEditable(true);
   TC[5]->Clear("D");
   Pad[36]->cd();
+  gPad->SetLogy(1); // log scale for the y-axis
 
   if (smd_adc_s_hor_ind[0])
   {
@@ -790,6 +794,7 @@ int ZdcMonDraw::DrawSmdAdcSouthIndividual(const std::string & /* what */)
   for (int i = 1; i < 8; ++i)
   {
     Pad[36 + i]->cd();
+    gPad->SetLogy(1); // log scale for the y-axis
     if (smd_adc_s_hor_ind[i])
     {
       smd_adc_s_hor_ind[i]->DrawCopy();
@@ -799,6 +804,7 @@ int ZdcMonDraw::DrawSmdAdcSouthIndividual(const std::string & /* what */)
   for (int i = 0; i < 7; ++i)
   {
     Pad[44 + i]->cd();
+    gPad->SetLogy(1); // log scale for the y-axis
     if (smd_adc_s_ver_ind[i])
     {
       smd_adc_s_ver_ind[i]->DrawCopy();
