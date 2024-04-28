@@ -118,7 +118,7 @@ int ZdcMon::Init()
   zdc_S3 = new TH1F("zdc_S3", "ZDC3 ADC south", BIN_NUMBER, MIN_ENERGY1, MAX_ENERGY1);
 
   //waveform
-  h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
+  // h_waveform = new TH2F("h_waveform", "h_waveform", 13, -0.5, 12.5, 512, -500, 20000);
 
   // SMD
 
@@ -183,7 +183,7 @@ int ZdcMon::Init()
   se->registerHisto(this, zdc_S1);
   se->registerHisto(this, zdc_S2);
   se->registerHisto(this, zdc_S3);
-  se->registerHisto(this, h_waveform);
+  // se->registerHisto(this, h_waveform);
 
   // SMD
   // Individual smd_adc channel histos
