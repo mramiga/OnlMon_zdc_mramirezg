@@ -251,23 +251,23 @@ int ZdcMonDraw::MakeCanvas(const std::string &name)
     TC[6]->SetEditable(false);
   }
 
-  // else if (name == "waveform")
-  // {
-  //   // xpos (-1) negative: do not draw menu bar
-  //   TC[7] = new TCanvas(name.c_str(), "ZDC Wave form", -xsize * 0.9, -ysize * 0.9, xsize * 0.9, ysize * 0.9);
-  //   // root is pathetic, whenever a new TCanvas is created root piles up
-  //   // 6kb worth of X11 events which need to be cleared with
-  //   // gSystem->ProcessEvents(), otherwise your process will grow and
-  //   // grow and grow but will not show a definitely lost memory leak
-  //   gSystem->ProcessEvents();
-  //   Pad[55] = new TPad("zdc waveform", "who needs this?", 0.05, 0.5, 0.5, 0.9, 0);
-  //   Pad[55]->Draw();
-  //   // this one is used to plot the run number on the canvas
-  //   transparent[0] = new TPad("transparent0", "this does not show", 0, 0, 1, 1);
-  //   transparent[0]->SetFillStyle(4000);
-  //   transparent[0]->Draw();
-  //   TC[7]->SetEditable(false);
-  // }
+  else if (name == "waveform")
+  {
+    // xpos (-1) negative: do not draw menu bar
+    TC[7] = new TCanvas(name.c_str(), "ZDC Wave form", -xsize * 0.9, -ysize * 0.9, xsize * 0.9, ysize * 0.9);
+    // root is pathetic, whenever a new TCanvas is created root piles up
+    // 6kb worth of X11 events which need to be cleared with
+    // gSystem->ProcessEvents(), otherwise your process will grow and
+    // grow and grow but will not show a definitely lost memory leak
+    gSystem->ProcessEvents();
+    Pad[55] = new TPad("zdc waveform", "who needs this?", 0.05, 0.5, 0.5, 0.9, 0);
+    Pad[55]->Draw();
+    // this one is used to plot the run number on the canvas
+    transparent[0] = new TPad("transparent0", "this does not show", 0, 0, 1, 1);
+    transparent[0]->SetFillStyle(4000);
+    transparent[0]->Draw();
+    TC[7]->SetEditable(false);
+  }
 
   return 0;
 }
@@ -317,11 +317,11 @@ int ZdcMonDraw::Draw(const std::string &what)
     idraw++;
   }
 
-  // if (what == "ALL" || what == "ZDC_WAVEFORM")
-  // {
-  //   iret += DrawWaveForm(what);
-  //   idraw++;
-  // }
+  if (what == "ALL" || what == "ZDC_WAVEFORM")
+  {
+    iret += DrawWaveForm(what);
+    idraw++;
+  }
 
   if (!idraw)
   {
@@ -895,49 +895,49 @@ int ZdcMonDraw::DrawSmdMultiplicities(const std::string & /* what */)
   return 0;
 }
 
-// int ZdcMonDraw::DrawWaveForm(const std::string & /* what */)
-// {
-//   OnlMonClient *cl = OnlMonClient::instance();
-//   TH2 *h_waveform = (TH2 *) cl->getHisto("ZDCMON_0", "h_waveform");
+int ZdcMonDraw::DrawWaveForm(const std::string & /* what */)
+{
+  OnlMonClient *cl = OnlMonClient::instance();
+  TH2 *h_waveform = (TH2 *) cl->getHisto("ZDCMON_0", "h_waveform");
 
-//   if (!gROOT->FindObject("waveform"))
-//   {
-//     MakeCanvas("waveform");
-//   }
-//   TC[7]->SetEditable(true);
-//   TC[7]->Clear("D");
-//   if (!h_waveform)
-//   {
-//     DrawDeadServer(transparent[0]);
-//     TC[7]->SetEditable(false);
-//     return -1;
-//   }
-//   Pad[55]->cd();
-//   gPad->SetLogz();
-//   h_waveform->SetXTitle("Sample Number");
-//   h_waveform->SetYTitle("Amplitude");
-//   h_waveform->DrawCopy("colz");
+  if (!gROOT->FindObject("waveform"))
+  {
+    MakeCanvas("waveform");
+  }
+  TC[7]->SetEditable(true);
+  TC[7]->Clear("D");
+  if (!h_waveform)
+  {
+    DrawDeadServer(transparent[0]);
+    TC[7]->SetEditable(false);
+    return -1;
+  }
+  Pad[55]->cd();
+  gPad->SetLogz();
+  h_waveform->SetXTitle("Sample Number");
+  h_waveform->SetYTitle("Amplitude");
+  h_waveform->DrawCopy("colz");
 
-//   TText PrintRun;
-//   PrintRun.SetTextFont(62);
-//   PrintRun.SetTextSize(0.04);
-//   PrintRun.SetNDC();          // set to normalized coordinates
-//   PrintRun.SetTextAlign(23);  // center/top alignment
-//   std::ostringstream runnostream;
-//   std::string runstring;
-//   time_t evttime = cl->EventTime("CURRENT");
-//   // fill run number and event time into string
-//   runnostream << ThisName << "_1 Run " << cl->RunNumber()
-//               << ", Time: " << ctime(&evttime);
-//   runstring = runnostream.str();
-//   transparent[0]->cd();
-//   PrintRun.DrawText(0.5, 1., runstring.c_str());
-//   TC[7]->Update();
-//   TC[7]->Show();
-//   TC[7]->SetEditable(false);
+  TText PrintRun;
+  PrintRun.SetTextFont(62);
+  PrintRun.SetTextSize(0.04);
+  PrintRun.SetNDC();          // set to normalized coordinates
+  PrintRun.SetTextAlign(23);  // center/top alignment
+  std::ostringstream runnostream;
+  std::string runstring;
+  time_t evttime = cl->EventTime("CURRENT");
+  // fill run number and event time into string
+  runnostream << ThisName << "_1 Run " << cl->RunNumber()
+              << ", Time: " << ctime(&evttime);
+  runstring = runnostream.str();
+  transparent[0]->cd();
+  PrintRun.DrawText(0.5, 1., runstring.c_str());
+  TC[7]->Update();
+  TC[7]->Show();
+  TC[7]->SetEditable(false);
 
-//   return 0;
-// }
+  return 0;
+}
 
 int ZdcMonDraw::SavePlot(const std::string &what, const std::string &type)
 {

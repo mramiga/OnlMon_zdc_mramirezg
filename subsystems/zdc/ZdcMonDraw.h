@@ -34,7 +34,7 @@ class ZdcMonDraw : public OnlMonDraw
   int DrawSmdAdcNorthIndividual(const std::string &what = "ALL");
   int DrawSmdAdcSouthIndividual(const std::string &what = "ALL");
   int DrawSmdMultiplicities(const std::string &what = "ALL");
-  // int DrawWaveForm(const std::string &what = "ALL");
+  int DrawWaveForm(const std::string &what = "ALL");
 
   TCanvas *TC[NUM_CANV] = {nullptr};
   TPad *transparent[NUM_CANV] = {nullptr};
